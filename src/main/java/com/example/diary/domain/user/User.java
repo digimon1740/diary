@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Setter
@@ -28,12 +29,15 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long seq;
 
+	@NotNull
 	@Column(name = "id")
 	private String id;
 
+	@NotNull
 	@Column(name = "name")
 	private String name;
 
+	@NotNull
 	@Column(name = "passwd")
 	private String passwd;
 

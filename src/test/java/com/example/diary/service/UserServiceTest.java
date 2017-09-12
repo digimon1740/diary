@@ -2,6 +2,7 @@ package com.example.diary.service;
 
 import com.example.diary.domain.user.Role;
 import com.example.diary.domain.user.User;
+import com.example.diary.domain.user.UserResponse;
 import com.example.diary.exception.UserNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -28,7 +29,8 @@ public class UserServiceTest {
 		user.setPasswd("admin123");
 		user.setRegtime(LocalDateTime.now());
 		user.setRole(Role.of("admin"));
-		userService.create(user);
+		UserResponse userResponse = userService.create(user);
+		log.info("userResponse : {}", userResponse);
 	}
 
 	@Test

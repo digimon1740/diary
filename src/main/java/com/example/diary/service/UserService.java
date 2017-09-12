@@ -1,15 +1,16 @@
 package com.example.diary.service;
 
 import com.example.diary.domain.user.User;
+import com.example.diary.domain.user.UserResponse;
 import com.example.diary.exception.UserNotFoundException;
 import com.example.diary.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -18,10 +19,12 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Transactional(readOnly = true)
 	public User findOneById(String id) {
 		return userRepository.findOneById(id);
 	}
 
+	@Transactional(readOnly = true)
 	public User findOneByIdWithNullCheck(String id) throws UserNotFoundException {
 		User user = userRepository.findOneById(id);
 		if (user == null)
@@ -29,15 +32,17 @@ public class UserService {
 		return user;
 	}
 
-	public User create(User user) {
-		// -- null check
-
-		// -- exists check
-
-		// -- form check
-		return userRepository.save(user);
+	@Transactional
+	public UserResponse create(User user) {
+		// == validation 필요함
+		User old = findOneById(user.getId());
+		if (old != null)
+			return new UserResponse(UserResponse.Code.EXIST);
+		userRepository.save(user);
+		return new UserResponse(UserResponse.Code.OK);
 	}
 
+	@Transactional
 	public void modify(User user) {
 		if (user == null || StringUtils.isEmpty(user.getId()))
 			return;
