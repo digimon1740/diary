@@ -1,12 +1,12 @@
 package com.example.diary.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -20,7 +20,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/user/**").hasRole("USER")
 				.and()
 				.formLogin()
-				.loginPage("/").loginProcessingUrl("/login").failureUrl("/login-error");
+				.loginPage("/").loginProcessingUrl("/login").failureUrl("/login-error")
+				.defaultSuccessUrl("/main", true)
+				.usernameParameter("username")
+				.passwordParameter("password")
+				.and().logout()
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout**"))
+				.logoutSuccessUrl("/").and().csrf().disable().httpBasic();
 	}
 
 	@Override
@@ -33,8 +39,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/img*//**")
 				.antMatchers("/js*//**")
 				.antMatchers("/font-awesome*//**")
-				.antMatchers("/main.html")
+				.antMatchers("/login.html")
 				.antMatchers("/robots.txt");
+	}
+
+	@Bean(name = "UserAuthenticationProvider")
+	public UserAuthenticationProvider UserAuthenticationProvider() {
+		return new UserAuthenticationProvider();
 	}
 
 //	@Autowired

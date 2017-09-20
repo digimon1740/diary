@@ -34,7 +34,7 @@ public class UserService {
 
 	@Transactional
 	public UserResponse create(User user) {
-		// == validation 필요함
+		// TODO validation 필요함
 		User old = findOneById(user.getId());
 		if (old != null)
 			return new UserResponse(UserResponse.Code.EXIST);
