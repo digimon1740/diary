@@ -1,4 +1,4 @@
-package com.example.diary.controller.general.api;
+package com.example.diary.web.general.api;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

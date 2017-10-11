@@ -1,6 +1,6 @@
-package com.example.diary.controller.user;
+package com.example.diary.web.user;
 
-import com.example.diary.controller.general.api.ApiResponse;
+import com.example.diary.web.general.api.ApiResponse;
 import com.example.diary.domain.user.User;
 import com.example.diary.exception.UserNotFoundException;
 import com.example.diary.service.UserService;
