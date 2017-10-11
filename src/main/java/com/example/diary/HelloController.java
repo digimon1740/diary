@@ -19,7 +19,7 @@ public class HelloController {
 	}
 
 	@RequestMapping(value="/main", method = RequestMethod.GET)
-	public ModelAndView main() throws Exception {
-		return new ModelAndView("main");
+	public String main() throws Exception {
+		return "redirect:home.html";
 	}
 }
