@@ -7,10 +7,14 @@ require.config({
 		'underscore': '/js/lib/underscore-1.8.3',
 		'jquery': '/js/lib/jquery-2.1.1',
 		'jquery.ui': '/js/lib/jquery-ui-1.10.4.min',
+		'jquery.easing': 'vendor/jquery-easing/jquery.easing.min',
 		'bootstrap': '/js/lib/bootstrap.min',
 		'toastr': '/js/plugins/toastr/toastr.min',
 		'sweetalert': '/js/plugins/sweetalert/sweetalert.min',
 		'moment': '/js/lib/moment.min',
+		'sb-admin': '/js/sb-admin',
+		'popper': '/vendor/popper/popper',
+		'chart': '/vendor/chart.js/Chart.min',
 		'angular': '/js/lib/angular.min', //AngularJS v1.5.7
 		'angular.route': '/js/lib/angular-route',
 		'angular.resource': '/js/lib/angular-resource',
@@ -22,13 +26,19 @@ require.config({
 			deps: ['jquery']
 		},
 		'bootstrap': {
-			deps: ['jquery', 'jquery.ui']
+			deps: ['jquery', 'jquery.ui', 'popper']
 		},
 		'toast': {
 			deps: ['jquery', 'jquery.ui', 'bootstrap']
 		},
 		'sweetalert': {
 			deps: ['jquery', 'jquery.ui', 'bootstrap']
+		},
+		'popper': {
+			deps: ['jquery'],
+		},
+		'jquery.easing': {
+			deps: ['jquery', 'jquery-ui'],
 		},
 		'angular': {
 			deps: ['jquery'],
@@ -53,7 +63,7 @@ require.config({
 });
 
 const importDependencies = ['jquery', 'angular', 'underscore', 'app', 'toastr', 'sweetalert', 'jquery.ui', 'bootstrap',
-	'angular.route', 'angular.resource', 'angular.ui.bootstrap', 'angular.InfiniteScroll', 'moment'];
+	'angular.route', 'angular.resource', 'angular.ui.bootstrap', 'angular.InfiniteScroll', 'moment','popper'];
 
 require(importDependencies, ($, angular, _, app, toastr) => {
 

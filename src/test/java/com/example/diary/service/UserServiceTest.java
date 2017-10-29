@@ -43,6 +43,5 @@ public class UserServiceTest {
 	public void modifyTest() throws UserNotFoundException {
 		User user = userService.findOneByIdWithNullCheck("admin11");
 		userService.modify(user);
-
 	}
 }
