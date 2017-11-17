@@ -25,7 +25,8 @@ public class UserServiceTest {
 	public void createTest() {
 		User user = new User();
 		user.setId("admin");
-		user.setName("admin");
+		user.setFirstName("SangHoon");
+		user.setLastName("Lee");
 		user.setPasswd("admin123");
 		user.setRegtime(LocalDateTime.now());
 		user.setRole(Role.of("admin"));

@@ -48,7 +48,7 @@ public class UserService {
 			return;
 		try {
 			User old = findOneByIdWithNullCheck(user.getId());
-			old.setName(user.getName());
+			old.setLastName(user.getLastName());
 			old.setPasswd(user.getPasswd());
 			old.setModitime(LocalDateTime.now());
 		} catch (UserNotFoundException e) {
