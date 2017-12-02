@@ -32,6 +32,11 @@ public class UserService {
 		return user;
 	}
 
+	@Transactional(readOnly = true)
+	public boolean existId(String id) {
+		return userRepository.findOneById(id) != null;
+	}
+
 	@Transactional
 	public UserResponse create(User user) {
 		// TODO validation 필요함

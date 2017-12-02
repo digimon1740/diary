@@ -54,4 +54,11 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	private Role role = Role.USER;
 
+	// TODO ID는 email형식이므로 validation을 추가해야함
+	public boolean validateId() {
+		//this.id;
+		// TODO 대소문자형식 체크해야함
+		return false;
+	}
+
 }

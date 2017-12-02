@@ -21,7 +21,7 @@ public class UserRestController {
 
 	@GetMapping(path = "checkid")
 	public ApiResponse checkId(@RequestParam(name = "id") String id) throws UserNotFoundException {
-		return new ApiResponse<>(userService.findOneById(id));
+		return new ApiResponse<>(userService.existId(id));
 	}
 
 	@PostMapping(path = "join")
