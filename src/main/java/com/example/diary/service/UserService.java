@@ -33,8 +33,13 @@ public class UserService {
 	}
 
 	@Transactional(readOnly = true)
-	public boolean existId(String id) {
+	public boolean existUser(String id) {
 		return userRepository.findOneById(id) != null;
+	}
+
+	@Transactional(readOnly = true)
+	public boolean noUser(String id) {
+		return userRepository.findOneById(id) == null;
 	}
 
 	@Transactional

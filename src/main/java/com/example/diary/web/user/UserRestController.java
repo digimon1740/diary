@@ -20,8 +20,8 @@ public class UserRestController {
 	private UserService userService;
 
 	@GetMapping(path = "checkid")
-	public ApiResponse checkId(@RequestParam(name = "id") String id) throws UserNotFoundException {
-		return new ApiResponse<>(userService.existId(id));
+	public boolean checkId(@RequestParam(name = "id") String id) {
+		return userService.noUser(id);
 	}
 
 	@PostMapping(path = "join")
