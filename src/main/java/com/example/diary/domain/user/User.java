@@ -1,9 +1,11 @@
 package com.example.diary.domain.user;
 
+import com.example.diary.utils.EmailValidator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -56,9 +58,11 @@ public class User {
 
 	// TODO ID는 email형식이므로 validation을 추가해야함
 	public boolean validateId() {
-		//this.id;
+		String email = this.id;
+		if (StringUtils.isEmpty(email))
+			return false;
 		// TODO 대소문자형식 체크해야함
-		return false;
+		return EmailValidator.isValid(email);
 	}
 
 }

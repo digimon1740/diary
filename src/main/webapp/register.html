@@ -88,8 +88,20 @@
 							}
 						}
 					}
+				},
+				confirmPasswd: {
+					equalTo: '#passwd',
 				}
-			}
+			},
+			messages: {
+				email: {
+					remote: 'This email already exists. Please change email address.',
+					email: 'Your email address must be in the format of name@domain.com',
+				},
+				confirmPasswd: {
+					equalTo: 'Please enter the same password again.',
+				}
+			},
 		});
 	});
 </script>
